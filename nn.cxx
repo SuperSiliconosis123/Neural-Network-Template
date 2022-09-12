@@ -33,9 +33,15 @@ using namespace std;
 //implement the settings
 #if NODE_SIZE == 1
 struct {
-  unsigned char input [INPUT_NODES];
-  unsigned char middle [LAYERS] [MIDDLE_NODES];
-  unsigned char output [OUTPUT_NODES];
+  unsigned char input1 [INPUT_NODES];
+  unsigned char middle1 [LAYERS] [MIDDLE_NODES];
+  unsigned char output1 [OUTPUT_NODES];
+  unsigned char input2 [INPUT_NODES];
+  unsigned char middle2 [LAYERS] [MIDDLE_NODES];
+  unsigned char output2 [OUTPUT_NODES];
+  unsigned char input3 [INPUT_NODES];
+  unsigned char middle3 [LAYERS] [MIDDLE_NODES];
+  unsigned char output3 [OUTPUT_NODES];
 } nodes;
 #elif NODE_SIZE == 2
 struct {
@@ -52,4 +58,5 @@ struct {
 #else
 #error "NODE_SIZE out of range"
 #endif
+
 
