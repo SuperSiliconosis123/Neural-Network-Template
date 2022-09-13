@@ -1,32 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@SuperSiliconosis123 
-SuperSiliconosis123
-/
-Neural-Network-Template
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-Neural-Network-Template/nn.cxx
-@SuperSiliconosis123
-SuperSiliconosis123 Update nn.cxx
-Latest commit fc9b2e8 19 minutes ago
- History
- 1 contributor
-83 lines (74 sloc)  2.02 KB
-
 /* 
  *                                        A General Template for a Neural Network using the Genetic Algorithm
  * 
@@ -89,21 +60,22 @@ struct {
 #else
 #error "NODE_SIZE out of range"
 #endif
+#if LAYERS == 0
+#error "LAYERS out of range"
+#endif
 
 struct {
-  double input [TRIALS] [INPUT_NODES * MIDDLE_NODES];
-  #if LAYERS = 2
-  double middle [TRIALS] [LAYERS-1] [MIDDLE_NODES * OUTPUT_NODES];
-  #elif LAYERS > 2
-  double middle [TRIALS] [LAYERS-1] [MIDDLE_NODES ^ 2];
+  double input [TRIALS] [INPUT_NODES] [MIDDLE_NODES];
+  #if LAYERS > 2
+  double middle [TRIALS] [LAYERS-2] [MIDDLE_NODES] [MIDDLE_NODES];
   #endif
-  double output [TRIALS] [OUTPUT_NODES];
+  double output [TRIALS] [OUTPUT_NODES] [MIDDLE_NODES];
 } wires;
 
 int evaluate(int trial) {
   for(int i = 0; i < INPUT_NODES; i++) {
-      
-    }
+    for(int x = 0; x < MIDDLE )
+  }
   return 0;
 }
 
