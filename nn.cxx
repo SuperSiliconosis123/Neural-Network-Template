@@ -1,3 +1,32 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@SuperSiliconosis123 
+SuperSiliconosis123
+/
+Neural-Network-Template
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+Neural-Network-Template/nn.cxx
+@SuperSiliconosis123
+SuperSiliconosis123 Update nn.cxx
+Latest commit fc9b2e8 19 minutes ago
+ History
+ 1 contributor
+83 lines (74 sloc)  2.02 KB
+
 /* 
  *                                        A General Template for a Neural Network using the Genetic Algorithm
  * 
@@ -62,22 +91,22 @@ struct {
 #endif
 
 struct {
-  double input [TRIALS] [INPUT_NODES];
-  #if LAYERS < 1
-  double middle [TRIALS] [LAYERS-1] [MIDDLE_NODES];
+  double input [TRIALS] [INPUT_NODES * MIDDLE_NODES];
+  #if LAYERS = 2
+  double middle [TRIALS] [LAYERS-1] [MIDDLE_NODES * OUTPUT_NODES];
+  #elif LAYERS > 2
+  double middle [TRIALS] [LAYERS-1] [MIDDLE_NODES ^ 2];
   #endif
   double output [TRIALS] [OUTPUT_NODES];
 } wires;
 
-int evaluate(int trial, 
-#if NODE_SIZE == 1
-char input[INPUT_NODES]
-#elif
-            ) {
-  
+int evaluate(int trial) {
+  for(int i = 0; i < INPUT_NODES; i++) {
+      
+    }
   return 0;
 }
 
 int main() {
   return 0;
-}
+};
