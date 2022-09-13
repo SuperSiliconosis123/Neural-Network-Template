@@ -18,6 +18,10 @@
  *   OUTPUT_NODES:
  *     The number of nodes in the output layer.
  *
+ * Functions:
+ *   int evaluate ():
+ *     evaluates
+ *
  */
 #include <iostream>
 #include <string>
