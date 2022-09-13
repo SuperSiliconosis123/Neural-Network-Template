@@ -19,8 +19,8 @@
  *     The number of nodes in the output layer.
  *
  * Functions:
- *   int evaluate ():
- *     evaluates
+ *   int evaluate (int trial):
+ *     determines the outcome of a neural network. returns the 
  *
  */
 #include <iostream>
@@ -69,7 +69,12 @@ struct {
   double output [TRIALS] [OUTPUT_NODES];
 } wires;
 
-int evaluate(int trial) {
+int evaluate(int trial, 
+#if NODE_SIZE == 1
+char input[INPUT_NODES]
+#elif
+            ) {
+  
   return 0;
 }
 
