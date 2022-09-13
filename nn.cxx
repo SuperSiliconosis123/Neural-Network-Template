@@ -3,6 +3,7 @@
  * 
  * Settings:
  *   NODE_SIZE:
+ *     the size of the variable used for the node
  *     1 = unsigned char
  *     2 = unsigned int
  *     3 = unsigned long long int
@@ -24,8 +25,8 @@ using namespace std;
 
 
 //general program settings
-#define NODE_SIZE 2
-#define LAYERS 3
+#define NODE_SIZE 3
+#define LAYERS 1
 #define TRIALS 3
 
 #define INPUT_NODES 10
@@ -43,10 +44,10 @@ struct {
 #elif NODE_SIZE == 2
 struct {
   unsigned int input [TRIALS] [INPUT_NODES];
-  unsigned int middle [TRIALS][ [LAYERS] [MIDDLE_NODES];
+  unsigned int middle [TRIALS] [LAYERS] [MIDDLE_NODES];
   unsigned int output [TRIALS] [OUTPUT_NODES];
 } nodes;
-#elif NODE_SIZE == 2
+#elif NODE_SIZE == 3
 struct {
   unsigned long long int input [TRIALS] [INPUT_NODES];
   unsigned long long int middle [TRIALS] [LAYERS] [MIDDLE_NODES];
@@ -56,4 +57,18 @@ struct {
 #error "NODE_SIZE out of range"
 #endif
 
+struct {
+  double input [TRIALS] [INPUT_NODES];
+  #if LAYERS < 1
+  double middle [TRIALS] [LAYERS-1] [MIDDLE_NODES];
+  #endif
+  double output [TRIALS] [OUTPUT_NODES];
+} wires;
 
+int evaluate(int trial) {
+  return 0;
+}
+
+int main() {
+  return 0;
+}
