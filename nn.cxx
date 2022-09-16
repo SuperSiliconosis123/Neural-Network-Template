@@ -50,8 +50,8 @@ struct {
 } nodes;
 struct {
   unsigned char input [TRIALS] [INPUT_NODES] [MIDDLE_NODES];
-  #if LAYERS > 2
-  unsigned char middle [TRIALS] [LAYERS-2] [MIDDLE_NODES] [MIDDLE_NODES];
+  #if LAYERS > 1
+  unsigned char middle [TRIALS] [LAYERS-1] [MIDDLE_NODES] [MIDDLE_NODES];
   #endif
   unsigned char ouTput [TRIALS] [MIDDLE_NODES] [OUTPUT_NODES];
 } wires;
@@ -63,8 +63,8 @@ struct {
 } nodes;
 struct {
   unsigned int input [TRIALS] [INPUT_NODES] [MIDDLE_NODES];
-  #if LAYERS > 2
-  unsigned int middle [TRIALS] [LAYERS-2] [MIDDLE_NODES] [MIDDLE_NODES];
+  #if LAYERS > 1
+  unsigned int middle [TRIALS] [LAYERS-1] [MIDDLE_NODES] [MIDDLE_NODES];
   #endif
   unsigned int ouTput [TRIALS] [MIDDLE_NODES] [OUTPUT_NODES];
 } wires;
@@ -76,8 +76,8 @@ struct {
 } nodes;
 struct {
   unsigned long long int input [TRIALS] [INPUT_NODES] [MIDDLE_NODES];
-  #if LAYERS > 2
-  unsigned long long int middle [TRIALS] [LAYERS-2] [MIDDLE_NODES] [MIDDLE_NODES];
+  #if LAYERS > 1
+  unsigned long long int middle [TRIALS] [LAYERS-1] [MIDDLE_NODES] [MIDDLE_NODES];
   #endif
   unsigned long long int output [TRIALS] [MIDDLE_NODES] [OUTPUT_NODES];
 } wires;
@@ -87,8 +87,8 @@ struct {
 
 struct {
   double input [TRIALS] [INPUT_NODES] [MIDDLE_NODES];
-  #if LAYERS > 2
-  double middle [TRIALS] [LAYERS-2] [MIDDLE_NODES] [MIDDLE_NODES];
+  #if LAYERS > 1
+  double middle [TRIALS] [LAYERS-1] [MIDDLE_NODES] [MIDDLE_NODES];
   #endif
   double output [TRIALS] [OUTPUT_NODES] [MIDDLE_NODES];
 } weights;
@@ -101,9 +101,23 @@ int evaluate(int trial) {
   }
   for(int i = 0; i < MIDDLE_NODES; i++) {
     for(int x = 0; x < INPUT_NODES; x++) {
-      node.middle[trial][0][i] += wires.input[trial][x][i] / (INPUT_NODES * MIDDLE_NODES);
+      nodes.middle[trial][0][i] += wires.input[trial][x][i] / (INPUT_NODES * MIDDLE_NODES);
     }
   }
+  #if LAYERS > 1
+  for(int i = 0; x < LAYERS - 1; i++) {
+    for(int x = 0; x < MIDDLE_NODES; x++) {
+      for(int y = 0; y < MIDDLE_NODES; y++) {
+        wires.middle[trial][i][x] = (nodes.middle[trial][i][m] * weights.middle[trial][i][x])/INPUT_NODES;
+      }
+    }
+    for(int i = 0; i < MIDDLE_NODES; i++) {
+      for(int x = 0; x < INPUT_NODES; x++) {
+        nodes.middle[trial][0][i] += wires.[trial][x][i] / (INPUT_NODES * MIDDLE_NODES);
+      }
+    }
+  }
+  #endif
   return 0;
 }
 
