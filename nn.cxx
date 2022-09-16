@@ -94,23 +94,15 @@ struct {
 } weights;
 
 int evaluate(int trial) {
-  #if NODE_SIZE == 1
-  unsigned char average;
-  #elif NODE_SIZE == 2
-  unsigned int average;
-  #elif NODE_SIZE == 3
-  unsigned long long int average;
-  #enif
   for(int i = 0; i < INPUT_NODES; i++) {
     for(int x = 0; x < MIDDLE_NODES; x++) {
       wires.input[trial][i][x] = (nodes.input[i] * weights.input[trial][i][x])/INPUT_NODES;
     }
   }
   for(int i = 0; i < MIDDLE_NODES; i++) {
-    for(int x = 0; i < INPUT_NODES; x++) {
-      
+    for(int x = 0; x < INPUT_NODES; x++) {
+      node.middle[trial][0][i] += wires.input[trial][x][i] / (INPUT_NODES * MIDDLE_NODES);
     }
-    node.middle[trial][0][i] = 
   }
   return 0;
 }
