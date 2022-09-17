@@ -105,19 +105,29 @@ int evaluate(int trial) {
     }
   }
   #if LAYERS > 1
-  for(int i = 0; x < LAYERS - 1; i++) {
+  for(int i = 0; i < LAYERS - 1; i++) {
     for(int x = 0; x < MIDDLE_NODES; x++) {
       for(int y = 0; y < MIDDLE_NODES; y++) {
-        wires.middle[trial][i][x] = (nodes.middle[trial][i][m] * weights.middle[trial][i][x])/INPUT_NODES;
+        wires.middle[trial][i][x][y] = (nodes.middle[trial][i][y] * weights.middle[trial][i][x])/INPUT_NODES;
       }
     }
     for(int i = 0; i < MIDDLE_NODES; i++) {
       for(int x = 0; x < INPUT_NODES; x++) {
-        nodes.middle[trial][0][i] += wires.[trial][x][i] / (INPUT_NODES * MIDDLE_NODES);
+        nodes.middle[trial][0][i] += wires.middle[trial][x][i] / (MIDDLE_NODES ^ 2);
       }
     }
   }
   #endif
+  for(int i = 0; i < MIDDLE_NODES; i++) {
+    for(int x = 0; x < OUTPUT_NODES; x++) {
+      wires.output[trial][i][x] = (nodes.middle[trial][-1][i][x] * weights.output[trial][i][x])/INPUT_NODES;
+    }
+  }
+  for(int i = 0; i < MIDDLE_NODES; i++) {
+    for(int x = 0; x < INPUT_NODES; x++) {
+      node.middle[trial][0][i] += wires.input[trial][x][i] / (INPUT_NODES * MIDDLE_NODES);
+    }
+  }
   return 0;
 }
 
