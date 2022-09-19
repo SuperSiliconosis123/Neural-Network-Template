@@ -113,7 +113,7 @@ int evaluate(int trial) {
     }
     for(int i = 0; i < MIDDLE_NODES; i++) {
       for(int x = 0; x < INPUT_NODES; x++) {
-        nodes.middle[trial][0][i] += wires.middle[trial][x][i] / (MIDDLE_NODES ^ 2);
+        nodes.middle[trial][0][i] += wires.middle[trial][i][x][y] / (MIDDLE_NODES ^ 2);
       }
     }
   }
@@ -125,7 +125,7 @@ int evaluate(int trial) {
   }
   for(int i = 0; i < MIDDLE_NODES; i++) {
     for(int x = 0; x < INPUT_NODES; x++) {
-      node.middle[trial][0][i] += wires.input[trial][x][i] / (INPUT_NODES * MIDDLE_NODES);
+      node.middle[trial][0][i] += wires.input[trial][x][i] / (OUTPU_NODES_NODES * MIDDLE_NODES);
     }
   }
   return 0;
